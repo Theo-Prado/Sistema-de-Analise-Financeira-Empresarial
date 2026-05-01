@@ -1,71 +1,46 @@
-📊 SAFE - Sistema de Análise Financeira Empresarial
-Um sistema de linha de comando (CLI) desenvolvido em Python para auxiliar empresas no controle e análise financeira anual. O SAFE coleta dados de vendas e despesas mês a mês, calcula o lucro bruto, compara com metas definidas pelo usuário e gera um gráfico visual interativo para facilitar a tomada de decisões.
-✨ Funcionalidades
-🔐 Autenticação simples para acesso ao sistema
-📅 Coleta mensal de valores de vendas e despesas
-🎯 Definição de metas financeira (atual e futura)
-🧮 Cálculo automático de faturamento, despesas e lucro bruto
-📊 Geração de gráfico de barras com matplotlib, incluindo linhas de meta
-🇧🇷 Formatação de valores no padrão monetário brasileiro (R$)
-💻 Interface leve via terminal
-🛠️ Pré-requisitos
-Python 3.7 ou superior
-matplotlib
-numpy
-📦 Instalação
-Clone o repositório:
-bash
-12
-Crie um ambiente virtual (opcional, mas recomendado):
-bash
-123
-Instale as dependências:
-bash
-1
-🚀 Como Executar
-bash
-1
-(Substitua safe.py pelo nome exato do arquivo do seu script)
-O sistema guiará você pelo fluxo:
-Login de acesso
-Inserção dos valores de vendas (janeiro a dezembro)
-Inserção dos valores de despesas (janeiro a dezembro)
-Definição das metas financeiras
-Exibição do relatório textual + gráfico interativo
-🔐 Credenciais Padrão
-Campo
-Valor
-Usuário
-administrador
-Senha
-admin@544
-⚠️ Nota: As credenciais estão hardcodadas para fins didáticos. Em ambientes de produção, recomenda-se implementar hash de senhas e armazenamento seguro.
-📈 Visualização
-Após o processamento dos dados, o SAFE exibe um gráfico contendo:
-🟢 Barra Verde: Total de Vendas
-🔴 Barra Vermelha: Total de Despesas
-🔵 Barra Azul: Lucro Bruto
-🟡 Linha Dourada (tracejada): Meta Atual
-🟣 Linha Roxa (pontilhada): Próxima Meta
-Os valores são exibidos automaticamente sobre as barras, formatados em R$.
-💡 Melhorias Futuras (Roadmap)
-Integração com banco de dados (SQLite/PostgreSQL) para persistência de dados
-Exportação de relatórios para .csv ou .pdf
-Autenticação com hashing de senhas (bcrypt ou hashlib)
-Validação de entrada (evitar crash com textos ou valores negativos)
-Gráfico de evolução mensal (linha/tempo)
-Suporte a múltiplos usuários/empresas
-🤝 Contribuindo
-Contribuições são sempre bem-vindas! Para propor melhorias:
-Faça um fork do projeto
-Crie uma branch com sua feature (git checkout -b feature/nova-funcionalidade)
-Commit suas mudanças (git commit -m 'feat: adiciona nova funcionalidade')
-Push para a branch (git push origin feature/nova-funcionalidade)
-Abra um Pull Request
-📜 Licença
-Este projeto está sob a licença MIT. Sinta-se livre para usar, modificar e distribuir. Consulte o arquivo LICENSE para mais detalhes.
-👤 Autor
-Desenvolvido por [Seu Nome]
-📧 [seu.email@exemplo.com]
-🔗 [LinkedIn/GitHub]
-⭐ Se este projeto foi útil para seus estudos ou trabalho, deixe uma estrela no repositório!
+# 📊 SAFE - Sistema de Análise Financeira Empresarial
+
+<div align="center">
+
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-3.5%2B-green?style=for-the-badge&logo=python)
+![NumPy](https://img.shields.io/badge/NumPy-1.21%2B-orange?style=for-the-badge&logo=numpy)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+
+</div>
+
+> **SAFE** é um sistema desenvolvido em Python para análise financeira empresarial, permitindo o acompanhamento de vendas, despesas e metas com visualizações gráficas intuitivas e relatórios detalhados.
+
+---
+
+## 🚀 Sobre o Projeto
+
+O **SAFE** foi criado para auxiliar gestores e empreendedores na tomada de decisões estratégicas através da análise de dados financeiros. Com uma interface de linha de comando simples e direta, o sistema possibilita:
+
+- 🔐 Autenticação de usuário administrador
+- 📈 Registro de vendas e despesas mensais
+- 🎯 Definição e acompanhamento de metas financeiras
+- 📊 Geração automática de gráficos comparativos
+- 💡 Insights sobre lucro, prejuízo e projeções
+
+---
+
+## ✨ Funcionalidades
+
+| Funcionalidade | Descrição |
+|---------------|-----------|
+| **Login Seguro** | Acesso restrito com credenciais de administrador |
+| **Entrada de Dados** | Cadastro mensal de vendas e despesas em R$ |
+| **Cálculo Automático** | Lucro bruto, líquido e total de despesas calculados instantaneamente |
+| **Gestão de Metas** | Definição de meta atual e futura com feedback de desempenho |
+| **Visualização Gráfica** | Gráfico de barras com matplotlib comparando vendas, despesas e lucro |
+| **Relatório Final** | Mensagens personalizadas conforme o alcance das metas |
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+```python
+# Bibliotecas principais
+matplotlib.pyplot  # Geração de gráficos
+numpy             # Manipulação de arrays e cálculos

@@ -1,453 +1,266 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SAFE - Sistema de Análise Financeira Empresarial</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    :root {
-      --primary: #4361ee;
-      --primary-dark: #3a56d4;
-      --secondary: #7209b7;
-      --success: #06d6a0;
-      --warning: #ffd166;
-      --danger: #ef476f;
-      --dark: #1a1a2e;
-      --light: #f8f9fa;
-      --gray: #6c757d;
-      --card-bg: rgba(255, 255, 255, 0.95);
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-      --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.25);
-      --transition: all 0.3s ease;
-    }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: var(--dark);
-      line-height: 1.6;
       min-height: 100vh;
       padding: 20px;
+      color: #1a1a2e;
     }
-
-    .container { max-width: 1200px; margin: 0 auto; }
-
-    header {
-      text-align: center;
-      padding: 30px 20px;
-      color: white;
-      animation: fadeInDown 0.8s ease;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 15px;
-    }
-
-    .logo-icon {
-      font-size: 2.5rem;
-      background: linear-gradient(45deg, var(--success), var(--primary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: pulse 2s infinite;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-      margin-bottom: 10px;
-    }
-
-    .subtitle {
-      font-size: 1.2rem;
-      opacity: 0.95;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
+    .container { max-width: 1000px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 25px 0; color: white; }
+    header h1 { font-size: 2.2rem; margin-bottom: 8px; }
+    header p { opacity: 0.95; }
+    
     .card {
-      background: var(--card-bg);
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-      padding: 30px;
-      margin-bottom: 25px;
-      transition: var(--transition);
-      animation: fadeInUp 0.6s ease;
-      animation-fill-mode: both;
+      background: white;
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-hover);
-    }
-
+    
     .card-title {
       display: flex;
       align-items: center;
       gap: 10px;
-      color: var(--primary);
-      font-size: 1.5rem;
+      color: #4361ee;
+      font-size: 1.3rem;
       margin-bottom: 20px;
-      padding-bottom: 15px;
+      padding-bottom: 12px;
       border-bottom: 2px solid #eee;
     }
-
-    .card-title i { font-size: 1.3rem; }
-
-    .login-container {
-      max-width: 450px;
-      margin: 40px auto;
-      text-align: center;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-      text-align: left;
-    }
-
+    
+    .form-group { margin-bottom: 15px; }
     .form-group label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       font-weight: 600;
-      color: var(--dark);
+      color: #333;
     }
-
     .form-control {
       width: 100%;
-      padding: 14px 18px;
+      padding: 12px;
       border: 2px solid #e0e0e0;
-      border-radius: 12px;
+      border-radius: 10px;
       font-size: 1rem;
-      transition: var(--transition);
-      background: #fafafa;
+      transition: border-color 0.3s;
     }
-
     .form-control:focus {
       outline: none;
-      border-color: var(--primary);
-      background: white;
-      box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.15);
+      border-color: #4361ee;
     }
-
+    
     .btn {
-      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      background: linear-gradient(45deg, #4361ee, #7209b7);
       color: white;
       border: none;
-      padding: 14px 30px;
-      font-size: 1.1rem;
+      padding: 14px 28px;
+      font-size: 1rem;
       font-weight: 600;
-      border-radius: 12px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
       width: 100%;
-      justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-
     .btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(67, 97, 238, 0.4);
+      box-shadow: 0 8px 20px rgba(67,97,238,0.4);
     }
-
     .btn-success {
-      background: linear-gradient(45deg, var(--success), #118ab2);
+      background: linear-gradient(45deg, #06d6a0, #118ab2);
     }
-
-    .alert {
-      padding: 15px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      font-weight: 500;
-      animation: shake 0.5s ease;
-    }
-
-    .alert-error {
-      background: #ffebee;
-      color: var(--danger);
-      border-left: 4px solid var(--danger);
-    }
-
-    .alert-success {
-      background: #e8f5e9;
-      color: var(--success);
-      border-left: 4px solid var(--success);
-    }
-
-    .dashboard { display: none; }
-    .dashboard.active { display: block; }
-
+    
     .months-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 15px;
-      margin-bottom: 25px;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
     }
-
     .month-input {
       background: #f8f9fa;
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid #e0e0e0;
+      padding: 10px;
+      border-radius: 8px;
     }
-
     .month-input label {
-      display: block;
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 5px;
-      color: var(--gray);
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 4px;
     }
-
     .month-input input {
       width: 100%;
-      padding: 8px 12px;
+      padding: 6px 10px;
       border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 0.95rem;
+      border-radius: 6px;
     }
-
+    
     .meta-inputs {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin: 25px 0;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin: 20px 0;
     }
-
+    
     .results-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      margin: 30px 0;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin: 25px 0;
     }
-
     .result-card {
       background: linear-gradient(135deg, #667eea15, #764ba215);
-      border-radius: 16px;
-      padding: 20px;
+      border-radius: 12px;
+      padding: 18px;
       text-align: center;
-      border: 1px solid rgba(102, 126, 234, 0.2);
     }
-
     .result-value {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       font-weight: 700;
-      margin: 10px 0;
-      color: var(--primary);
+      color: #4361ee;
+      margin: 8px 0;
     }
-
-    .result-label {
-      color: var(--gray);
-      font-size: 0.95rem;
-    }
-
+    .result-label { color: #666; font-size: 0.9rem; }
+    
     .status-message {
-      padding: 20px;
-      border-radius: 16px;
-      margin: 25px 0;
+      padding: 18px;
+      border-radius: 12px;
+      margin: 20px 0;
       font-weight: 500;
       text-align: center;
-      animation: fadeIn 0.5s ease;
     }
-
     .status-success {
-      background: linear-gradient(135deg, #06d6a020, #118ab220);
-      color: #075a47;
-      border: 2px solid var(--success);
+      background: #d4edda;
+      color: #155724;
+      border: 2px solid #28a745;
     }
-
     .status-warning {
-      background: linear-gradient(135deg, #ffd16620, #ff9e6420);
-      color: #8a6d1a;
-      border: 2px solid var(--warning);
+      background: #fff3cd;
+      color: #856404;
+      border: 2px solid #ffc107;
     }
-
     .status-danger {
-      background: linear-gradient(135deg, #ef476f20, #c1121f20);
-      color: #8b1a3a;
-      border: 2px solid var(--danger);
+      background: #f8d7da;
+      color: #721c24;
+      border: 2px solid #dc3545;
     }
-
+    
     .chart-container {
       position: relative;
-      height: 400px;
-      margin: 30px 0;
+      height: 350px;
+      margin: 25px 0;
       background: white;
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: var(--shadow);
+      border-radius: 12px;
+      padding: 15px;
     }
-
+    
+    .alert {
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+    .alert-error {
+      background: #ffebee;
+      color: #c62828;
+      border-left: 4px solid #c62828;
+    }
+    .hidden { display: none !important; }
+    
     footer {
       text-align: center;
-      padding: 30px 20px 50px;
+      padding: 30px 20px 40px;
       color: white;
-      animation: fadeIn 1s ease;
     }
-
     .footer-content {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 25px;
-      max-width: 600px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 14px;
+      padding: 22px;
+      max-width: 550px;
       margin: 0 auto;
-      border: 1px solid rgba(255, 255, 255, 0.3);
     }
-
-    .footer-content p {
-      margin: 8px 0;
-      font-size: 1.05rem;
-    }
-
+    .footer-content p { margin: 7px 0; }
     .footer-content a {
       color: white;
       text-decoration: none;
       font-weight: 600;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
     }
-
-    .footer-content a:hover {
-      color: var(--warning);
-      transform: scale(1.05);
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 15px;
-    }
-
-    .social-links a {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.2rem;
-      transition: var(--transition);
-    }
-
-    .social-links a:hover {
-      background: white;
-      color: var(--primary);
-      transform: translateY(-3px);
-    }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      75% { transform: translateX(5px); }
-    }
-
+    .footer-content a:hover { color: #ffd166; }
+    
     @media (max-width: 768px) {
-      h1 { font-size: 2rem; }
-      .subtitle { font-size: 1rem; }
-      .card { padding: 20px; }
       .months-grid { grid-template-columns: repeat(2, 1fr); }
-      .chart-container { height: 350px; }
+      .meta-inputs, .results-grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.8rem; }
     }
-
     @media (max-width: 480px) {
       .months-grid { grid-template-columns: 1fr; }
-      .meta-inputs { grid-template-columns: 1fr; }
-      .results-grid { grid-template-columns: 1fr; }
     }
-
-    .hidden { display: none !important; }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <div class="logo">
-        <i class="fas fa-chart-line logo-icon"></i>
-        <h1>SAFE</h1>
-      </div>
-      <p class="subtitle">Sistema de Análise Financeira Empresarial • Transforme dados em decisões estratégicas</p>
+      <h1><i class="fas fa-chart-line"></i> SAFE</h1>
+      <p>Sistema de Análise Financeira Empresarial</p>
     </header>
 
-    <!-- Login Section -->
-    <div id="loginSection" class="card login-container">
-      <h2 class="card-title"><i class="fas fa-lock"></i> Acesso ao Sistema</h2>
+    <!-- LOGIN -->
+    <div id="loginSection" class="card">
+      <h2 class="card-title"><i class="fas fa-lock"></i> Acesso</h2>
       <div id="loginAlert" class="alert alert-error hidden">
-        <i class="fas fa-exclamation-triangle"></i> Credenciais inválidas! Tente novamente.
+        ❌ Credenciais inválidas!
       </div>
       <form id="loginForm">
         <div class="form-group">
-          <label for="username"><i class="fas fa-user"></i> Nome do usuário</label>
+          <label>Usuário</label>
           <input type="text" id="username" class="form-control" placeholder="administrador" required>
         </div>
         <div class="form-group">
-          <label for="password"><i class="fas fa-key"></i> Senha</label>
-          <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+          <label>Senha</label>
+          <input type="password" id="password" class="form-control" placeholder="admin@544" required>
         </div>
-        <button type="submit" class="btn">
-          <i class="fas fa-sign-in-alt"></i> Entrar no Sistema
-        </button>
+        <button type="submit" class="btn">🔐 Entrar</button>
       </form>
-      <p style="margin-top: 20px; color: var(--gray); font-size: 0.9rem;">
-        <i class="fas fa-info-circle"></i> Demo: usuário <strong>administrador</strong> | senha <strong>admin@544</strong>
+      <p style="margin-top:15px;color:#666;font-size:0.9rem;">
+        💡 Demo: <strong>administrador</strong> / <strong>admin@544</strong>
       </p>
     </div>
 
-    <!-- Dashboard Section -->
-    <div id="dashboardSection" class="dashboard">
+    <!-- DASHBOARD -->
+    <div id="dashboardSection" class="hidden">
       <div class="card">
-        <h2 class="card-title"><i class="fas fa-edit"></i> Inserção de Dados Financeiros</h2>
+        <h2 class="card-title"><i class="fas fa-edit"></i> Dados Financeiros</h2>
         
-        <h3 style="margin: 20px 0 15px; color: var(--primary);"><i class="fas fa-arrow-up"></i> Vendas Mensais (R$)</h3>
+        <h3 style="margin:15px 0 10px;color:#4361ee">📈 Vendas (R$)</h3>
         <div class="months-grid" id="salesInputs"></div>
         
-        <h3 style="margin: 25px 0 15px; color: var(--danger);"><i class="fas fa-arrow-down"></i> Despesas Mensais (R$)</h3>
+        <h3 style="margin:20px 0 10px;color:#ef476f">📉 Despesas (R$)</h3>
         <div class="months-grid" id="expensesInputs"></div>
         
         <div class="meta-inputs">
           <div class="form-group">
-            <label for="currentGoal"><i class="fas fa-bullseye"></i> Meta Atual (R$)</label>
-            <input type="number" id="currentGoal" class="form-control" placeholder="Ex: 500000" min="0">
+            <label>🎯 Meta Atual (R$)</label>
+            <input type="number" id="currentGoal" class="form-control" placeholder="Ex: 500000">
           </div>
           <div class="form-group">
-            <label for="futureGoal"><i class="fas fa-rocket"></i> Próxima Meta (R$)</label>
-            <input type="number" id="futureGoal" class="form-control" placeholder="Ex: 750000" min="0">
+            <label>🚀 Próxima Meta (R$)</label>
+            <input type="number" id="futureGoal" class="form-control" placeholder="Ex: 750000">
           </div>
         </div>
         
-        <button id="analyzeBtn" class="btn btn-success" style="margin-top: 10px;">
-          <i class="fas fa-calculator"></i> Analisar Resultados
-        </button>
+        <button id="analyzeBtn" class="btn btn-success">✅ Analisar Resultados</button>
       </div>
 
       <div id="resultsCard" class="card hidden">
-        <h2 class="card-title"><i class="fas fa-chart-pie"></i> Resultados da Análise</h2>
+        <h2 class="card-title"><i class="fas fa-chart-pie"></i> Resultados</h2>
         
         <div class="results-grid">
           <div class="result-card">
@@ -465,7 +278,6 @@
         </div>
 
         <div id="statusMessage" class="status-message"></div>
-
         <div class="chart-container">
           <canvas id="financeChart"></canvas>
         </div>
@@ -475,196 +287,158 @@
     <footer>
       <div class="footer-content">
         <p><strong>Desenvolvido por Theo Silva Prado</strong></p>
-        <p><i class="fas fa-envelope"></i> <a href="mailto:theo.silva.prado@gmail.com">theo.silva.prado@gmail.com</a></p>
-        <p><i class="fab fa-github"></i> <a href="https://github.com/Theo-Prado" target="_blank">github.com/Theo-Prado</a></p>
-        <div class="social-links">
-          <a href="mailto:theo.silva.prado@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://github.com/Theo-Prado" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-        <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.9;">
-          <i class="fas fa-code"></i> SAFE v1.1 • Projeto Open Source
+        <p>📧 <a href="mailto:theo.silva.prado@gmail.com">theo.silva.prado@gmail.com</a></p>
+        <p>🔗 <a href="https://github.com/Theo-Prado" target="_blank">github.com/Theo-Prado</a></p>
+        <p style="margin-top:12px;font-size:0.85rem;opacity:0.9">
+          <i class="fas fa-code"></i> SAFE v1.2 • Open Source
         </p>
       </div>
     </footer>
   </div>
 
   <script>
-    const months = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", 
-                   "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
-
+    // === CONFIG ===
+    const months = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+    const CREDENTIALS = { user: "administrador", pass: "admin@544" };
+    
+    // === DOM ===
     const loginSection = document.getElementById('loginSection');
     const dashboardSection = document.getElementById('dashboardSection');
     const loginForm = document.getElementById('loginForm');
     const loginAlert = document.getElementById('loginAlert');
-    const salesInputs = document.getElementById('salesInputs');
-    const expensesInputs = document.getElementById('expensesInputs');
     const analyzeBtn = document.getElementById('analyzeBtn');
     const resultsCard = document.getElementById('resultsCard');
+    let chartInstance = null;
+
+    // === UTILS ===
+    const formatBRL = val => new Intl.NumberFormat('pt-BR', { style:'currency', currency:'BRL' }).format(val);
     
-    const credentials = {
-      username: "administrador",
-      password: "admin@544"
+    const createMonthInputs = (containerId, prefix) => {
+      const container = document.getElementById(containerId);
+      container.innerHTML = months.map((m, i) => `
+        <div class="month-input">
+          <label>${m.charAt(0).toUpperCase()+m.slice(1)}</label>
+          <input type="number" id="${prefix}_${i}" class="form-control" min="0" step="0.01" placeholder="0,00">
+        </div>
+      `).join('');
     };
 
-    let financeChart = null;
-
-    function generateMonthInputs(containerId, prefix) {
-      const container = document.getElementById(containerId);
-      container.innerHTML = ''; // Clear previous inputs
-      months.forEach((month, index) => {
-        const div = document.createElement('div');
-        div.className = 'month-input';
-        div.innerHTML = `
-          <label for="${prefix}_${index}">${month.charAt(0).toUpperCase() + month.slice(1)}</label>
-          <input type="number" id="${prefix}_${index}" class="form-control" 
-                 placeholder="0,00" min="0" step="0.01">
-        `;
-        container.appendChild(div);
-      });
-    }
-
-    function formatBRL(value) {
-      return new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL'
-      }).format(value);
-    }
-
-    loginForm.addEventListener('submit', (e) => {
+    // === LOGIN ===
+    loginForm.addEventListener('submit', e => {
       e.preventDefault();
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
+      const u = document.getElementById('username').value;
+      const p = document.getElementById('password').value;
       
-      if (username === credentials.username && password === credentials.password) {
+      if (u === CREDENTIALS.user && p === CREDENTIALS.pass) {
         loginAlert.classList.add('hidden');
-        loginSection.style.display = 'none';
-        dashboardSection.classList.add('active');
-        
-        generateMonthInputs('salesInputs', 'sale');
-        generateMonthInputs('expensesInputs', 'expense');
-        
+        loginSection.classList.add('hidden');
+        dashboardSection.classList.remove('hidden');
+        createMonthInputs('salesInputs', 'sale');
+        createMonthInputs('expensesInputs', 'expense');
         dashboardSection.scrollIntoView({ behavior: 'smooth' });
       } else {
         loginAlert.classList.remove('hidden');
-        loginForm.style.animation = 'shake 0.5s ease';
-        setTimeout(() => loginForm.style.animation = '', 500);
       }
     });
 
+    // === ANALYZE ===
     analyzeBtn.addEventListener('click', () => {
-      try {
-        // Get sales values
-        const salesValues = [];
-        for (let i = 0; i < 12; i++) {
-          const val = parseFloat(document.getElementById(`sale_${i}`).value) || 0;
-          salesValues.push(val);
-        }
-        
-        // Get expenses values
-        const expensesValues = [];
-        for (let i = 0; i < 12; i++) {
-          const val = parseFloat(document.getElementById(`expense_${i}`).value) || 0;
-          expensesValues.push(val);
-        }
-        
-        // Get goals
-        const meta = parseFloat(document.getElementById('currentGoal').value) || 0;
-        const metaFutura = parseFloat(document.getElementById('futureGoal').value) || 0;
-        
-        // Calculations
-        const lucro_liquido = salesValues.reduce((a, b) => a + b, 0);
-        const total_despesas = expensesValues.reduce((a, b) => a + b, 0);
-        const lucro_bruto = lucro_liquido - total_despesas;
-        const quanto_falta_meta = meta - lucro_bruto;
-        const quanto_falta_meta_futura = meta_futura - lucro_bruto;
-        
-        // Update results
-        document.getElementById('totalSales').textContent = formatBRL(lucro_liquido);
-        document.getElementById('totalExpenses').textContent = formatBRL(total_despesas);
-        document.getElementById('grossProfit').textContent = formatBRL(lucro_bruto);
-        
-        // Status message
-        const statusEl = document.getElementById('statusMessage');
-        statusEl.className = 'status-message';
-        
-        if (lucro_bruto >= metaFutura) {
-          statusEl.innerHTML = `<i class="fas fa-trophy"></i> <strong>Lucro de ${formatBRL(lucro_bruto)}</strong><br>Todas as metas alcançadas! 🎉`;
-          statusEl.classList.add('status-success');
-        } else if (lucro_bruto >= meta) {
-          statusEl.innerHTML = `<i class="fas fa-check-circle"></i> <strong>Lucro de ${formatBRL(lucro_bruto)}</strong><br>Meta alcançada! Falta ${formatBRL(quanto_falta_meta_futura)} para alcançar a próxima meta!`;
-          statusEl.classList.add('status-success');
-        } else if (lucro_bruto > 0) {
-          statusEl.innerHTML = `<i class="fas fa-exclamation-circle"></i> <strong>Lucro de ${formatBRL(lucro_bruto)}</strong><br>Meta não alcançada. Falta ${formatBRL(quanto_falta_meta)} para alcançar a meta atual!`;
-          statusEl.classList.add('status-warning');
-        } else if (lucro_bruto === 0) {
-          statusEl.innerHTML = `<i class="fas fa-minus-circle"></i> <strong>Lucro nulo</strong><br>Meta não alcançada. Falta ${formatBRL(quanto_falta_meta)} para alcançar a meta atual!`;
-          statusEl.classList.add('status-warning');
-        } else {
-          statusEl.innerHTML = `<i class="fas fa-times-circle"></i> <strong>Prejuízo de ${formatBRL(Math.abs(lucro_bruto))}</strong><br>Falta ${formatBRL(quanto_falta_meta)} para alcançar a meta atual!`;
-          statusEl.classList.add('status-danger');
-        }
-        
-        // Show results and create chart
-        resultsCard.classList.remove('hidden');
-        resultsCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        
-        // Create/Update Chart
-        createChart(lucro_liquido, total_despesas, lucro_bruto, meta, metaFutura);
-        
-      } catch (error) {
-        console.error('Erro na análise:', error);
-        alert('Ocorreu um erro ao analisar os dados. Verifique o console para mais detalhes.');
+      console.log('🔍 Botão clicado - Iniciando análise...');
+      
+      // Coletar dados
+      const sales = Array.from({length:12}, (_,i) => 
+        parseFloat(document.getElementById(`sale_${i}`).value) || 0
+      );
+      const expenses = Array.from({length:12}, (_,i) => 
+        parseFloat(document.getElementById(`expense_${i}`).value) || 0
+      );
+      const meta = parseFloat(document.getElementById('currentGoal').value) || 0;
+      const metaFutura = parseFloat(document.getElementById('futureGoal').value) || 0;
+      
+      // Cálculos (lógica idêntica ao Python)
+      const vendasTotal = sales.reduce((a,b)=>a+b,0);
+      const despesasTotal = expenses.reduce((a,b)=>a+b,0);
+      const lucroBruto = vendasTotal - despesasTotal;
+      const faltaMeta = meta - lucroBruto;
+      const faltaMetaFutura = metaFutura - lucroBruto;
+      
+      // Atualizar UI
+      document.getElementById('totalSales').textContent = formatBRL(vendasTotal);
+      document.getElementById('totalExpenses').textContent = formatBRL(despesasTotal);
+      document.getElementById('grossProfit').textContent = formatBRL(lucroBruto);
+      
+      // Mensagem de status
+      const status = document.getElementById('statusMessage');
+      if (lucroBruto >= metaFutura) {
+        status.className = 'status-message status-success';
+        status.innerHTML = `🏆 <strong>Lucro de ${formatBRL(lucroBruto)}</strong><br>Todas as metas alcançadas!`;
+      } else if (lucroBruto >= meta) {
+        status.className = 'status-message status-success';
+        status.innerHTML = `✅ <strong>Lucro de ${formatBRL(lucroBruto)}</strong><br>Meta atual alcançada! Falta ${formatBRL(faltaMetaFutura)} para a próxima.`;
+      } else if (lucroBruto > 0) {
+        status.className = 'status-message status-warning';
+        status.innerHTML = `⚠️ <strong>Lucro de ${formatBRL(lucroBruto)}</strong><br>Falta ${formatBRL(faltaMeta)} para a meta atual.`;
+      } else if (lucroBruto === 0) {
+        status.className = 'status-message status-warning';
+        status.innerHTML = `➖ <strong>Lucro nulo</strong><br>Falta ${formatBRL(faltaMeta)} para a meta atual.`;
+      } else {
+        status.className = 'status-message status-danger';
+        status.innerHTML = `❌ <strong>Prejuízo de ${formatBRL(Math.abs(lucroBruto))}</strong><br>Falta ${formatBRL(faltaMeta)} para a meta atual.`;
       }
+      
+      // Mostrar resultados
+      resultsCard.classList.remove('hidden');
+      resultsCard.scrollIntoView({ behavior: 'smooth' });
+      
+      // Renderizar gráfico
+      renderChart(vendasTotal, despesasTotal, lucroBruto, meta, metaFutura);
     });
 
-    function createChart(vendas, despesas, lucro, meta, metaFutura) {
+    // === CHART.JS ===
+    function renderChart(vendas, despesas, lucro, meta, metaFutura) {
       const ctx = document.getElementById('financeChart').getContext('2d');
       
-      if (financeChart) {
-        financeChart.destroy();
-      }
+      if (chartInstance) chartInstance.destroy();
       
       const profitColor = lucro >= 0 ? '#06d6a0' : '#ef476f';
       
-      financeChart = new Chart(ctx, {
+      chartInstance = new Chart(ctx, {
         type: 'bar',
-        data: {  // ✅ CORREÇÃO: Adicionado 'data:'
+        data: {
           labels: ['Vendas Totais', 'Despesas Totais', 'Lucro Bruto'],
           datasets: [
             {
               label: 'Valor (R$)',
-              data: [vendas, despesas, lucro],  // ✅ CORREÇÃO: Adicionado 'data:'
+              data: [vendas, despesas, lucro],
               backgroundColor: [
-                'rgba(102, 187, 106, 0.85)',
-                'rgba(239, 71, 111, 0.85)',
+                'rgba(102,187,106,0.85)',
+                'rgba(239,71,111,0.85)',
                 profitColor + 'cc'
               ],
               borderColor: [
-                'rgba(102, 187, 106, 1)',
-                'rgba(239, 71, 111, 1)',
+                'rgba(102,187,106,1)',
+                'rgba(239,71,111,1)',
                 profitColor
               ],
               borderWidth: 2,
-              borderRadius: 8,
-              borderSkipped: false
+              borderRadius: 6
             },
             {
               type: 'line',
               label: 'Meta Atual',
-              data: [meta, meta, meta],  // ✅ CORREÇÃO: Adicionado 'data:'
+              data: [meta, meta, meta],
               borderColor: '#ffd166',
-              borderDash: [5, 5],
+              borderDash: [5,5],
               borderWidth: 2,
               pointRadius: 0,
               fill: false
             },
             {
-              type: 'line',
+              type: 'line', 
               label: 'Próxima Meta',
-              data: [metaFutura, metaFutura, metaFutura],  // ✅ CORREÇÃO: Adicionado 'data:'
+              data: [metaFutura, metaFutura, metaFutura],
               borderColor: '#9d4edd',
-              borderDash: [2, 4],
+              borderDash: [2,4],
               borderWidth: 2,
               pointRadius: 0,
               fill: false
@@ -675,68 +449,40 @@
           responsive: true,
           maintainAspectRatio: false,
           plugins: {
-            legend: {
-              position: 'top',
-              labels: {
-                font: { size: 11, weight: '600' },
-                padding: 15,
-                usePointStyle: true
-              }
-            },
+            legend: { position: 'top', labels: { font: {size:10} } },
             title: {
               display: true,
-              text: '📊 Resumo Financeiro Anual e Metas',
-              font: { size: 16, weight: '700' },
-              padding: { top: 10, bottom: 20 }
+              text: '📊 Resumo Financeiro Anual',
+              font: { size: 14, weight: 'bold' }
             },
             tooltip: {
               callbacks: {
-                label: function(context) {
-                  return `${context.dataset.label}: ${formatBRL(context.parsed.y)}`;
-                }
+                label: ctx => `${ctx.dataset.label}: ${formatBRL(ctx.parsed.y)}`
               }
             }
           },
           scales: {
             y: {
               beginAtZero: true,
-              grid: { color: 'rgba(0, 0, 0, 0.05)' },
               ticks: {
-                callback: function(value) {
-                  return 'R$ ' + value.toLocaleString('pt-BR');
-                },
-                font: { size: 10 }
-              },
-              title: {
-                display: true,
-                text: 'Valor (R$)',
-                font: { size: 12, weight: '600' }
+                callback: v => 'R$ ' + v.toLocaleString('pt-BR')
               }
-            },
-            x: {
-              grid: { display: false },
-              ticks: { font: { size: 11, weight: '500' } }
             }
           },
-          animation: {
-            duration: 1500,
-            easing: 'easeOutQuart'
-          }
+          animation: { duration: 1000 }
         }
       });
+      
+      console.log('📊 Gráfico renderizado com sucesso!');
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const cards = document.querySelectorAll('.card');
-      cards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.15}s`;
-      });
-    });
-
-    document.getElementById('password').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        loginForm.requestSubmit();
-      }
+    // === DEBUG HELP ===
+    window.addEventListener('load', () => {
+      console.log('✅ SAFE carregado. Console logs ativados para debug.');
+      console.log('💡 Se o botão não funcionar, verifique:');
+      console.log('   1. Console do navegador (F12) para erros');
+      console.log('   2. Se os IDs dos elementos estão corretos');
+      console.log('   3. Se Chart.js foi carregado (network tab)');
     });
   </script>
 </body>

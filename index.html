@@ -23,11 +23,7 @@
       --transition: all 0.3s ease;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -38,12 +34,8 @@
       padding: 20px;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    .container { max-width: 1200px; margin: 0 auto; }
 
-    /* Header Styles */
     header {
       text-align: center;
       padding: 30px 20px;
@@ -81,7 +73,6 @@
       margin: 0 auto;
     }
 
-    /* Card Styles */
     .card {
       background: var(--card-bg);
       border-radius: 20px;
@@ -109,11 +100,8 @@
       border-bottom: 2px solid #eee;
     }
 
-    .card-title i {
-      font-size: 1.3rem;
-    }
+    .card-title i { font-size: 1.3rem; }
 
-    /* Login Form */
     .login-container {
       max-width: 450px;
       margin: 40px auto;
@@ -171,21 +159,6 @@
       box-shadow: 0 10px 25px rgba(67, 97, 238, 0.4);
     }
 
-    .btn:active {
-      transform: translateY(0);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 2px solid var(--primary);
-      color: var(--primary);
-    }
-
-    .btn-outline:hover {
-      background: var(--primary);
-      color: white;
-    }
-
     .btn-success {
       background: linear-gradient(45deg, var(--success), #118ab2);
     }
@@ -210,14 +183,8 @@
       border-left: 4px solid var(--success);
     }
 
-    /* Dashboard */
-    .dashboard {
-      display: none;
-    }
-
-    .dashboard.active {
-      display: block;
-    }
+    .dashboard { display: none; }
+    .dashboard.active { display: block; }
 
     .months-grid {
       display: grid;
@@ -256,7 +223,6 @@
       margin: 25px 0;
     }
 
-    /* Results Section */
     .results-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -321,7 +287,6 @@
       box-shadow: var(--shadow);
     }
 
-    /* Footer */
     footer {
       text-align: center;
       padding: 30px 20px 50px;
@@ -385,46 +350,24 @@
       transform: translateY(-3px);
     }
 
-    /* Animations */
     @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
     @keyframes shake {
       0%, 100% { transform: translateX(0); }
       25% { transform: translateX(-5px); }
       75% { transform: translateX(5px); }
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       h1 { font-size: 2rem; }
       .subtitle { font-size: 1rem; }
@@ -439,34 +382,11 @@
       .results-grid { grid-template-columns: 1fr; }
     }
 
-    /* Hide sections */
     .hidden { display: none !important; }
-
-    /* Progress animation for chart */
-    .chart-wrapper {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .chart-wrapper::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-      animation: shimmer 2s infinite;
-    }
-
-    @keyframes shimmer {
-      100% { left: 100%; }
-    }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Header -->
     <header>
       <div class="logo">
         <i class="fas fa-chart-line logo-icon"></i>
@@ -501,7 +421,6 @@
 
     <!-- Dashboard Section -->
     <div id="dashboardSection" class="dashboard">
-      <!-- Data Input Card -->
       <div class="card">
         <h2 class="card-title"><i class="fas fa-edit"></i> Inserção de Dados Financeiros</h2>
         
@@ -527,7 +446,6 @@
         </button>
       </div>
 
-      <!-- Results Card -->
       <div id="resultsCard" class="card hidden">
         <h2 class="card-title"><i class="fas fa-chart-pie"></i> Resultados da Análise</h2>
         
@@ -554,7 +472,6 @@
       </div>
     </div>
 
-    <!-- Footer -->
     <footer>
       <div class="footer-content">
         <p><strong>Desenvolvido por Theo Silva Prado</strong></p>
@@ -566,18 +483,16 @@
           <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         </div>
         <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.9;">
-          <i class="fas fa-code"></i> SAFE v1.0 • Projeto Open Source
+          <i class="fas fa-code"></i> SAFE v1.1 • Projeto Open Source
         </p>
       </div>
     </footer>
   </div>
 
   <script>
-    // Months array
     const months = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", 
                    "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
 
-    // DOM Elements
     const loginSection = document.getElementById('loginSection');
     const dashboardSection = document.getElementById('dashboardSection');
     const loginForm = document.getElementById('loginForm');
@@ -587,18 +502,16 @@
     const analyzeBtn = document.getElementById('analyzeBtn');
     const resultsCard = document.getElementById('resultsCard');
     
-    // Credentials (same as Python code)
     const credentials = {
       username: "administrador",
       password: "admin@544"
     };
 
-    // Chart instance
     let financeChart = null;
 
-    // Generate month inputs
     function generateMonthInputs(containerId, prefix) {
       const container = document.getElementById(containerId);
+      container.innerHTML = ''; // Clear previous inputs
       months.forEach((month, index) => {
         const div = document.createElement('div');
         div.className = 'month-input';
@@ -611,7 +524,6 @@
       });
     }
 
-    // Format currency BRL
     function formatBRL(value) {
       return new Intl.NumberFormat('pt-BR', {
         style: 'currency',
@@ -619,7 +531,6 @@
       }).format(value);
     }
 
-    // Login handler
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const username = document.getElementById('username').value;
@@ -630,134 +541,135 @@
         loginSection.style.display = 'none';
         dashboardSection.classList.add('active');
         
-        // Generate inputs after login
         generateMonthInputs('salesInputs', 'sale');
         generateMonthInputs('expensesInputs', 'expense');
         
-        // Scroll to dashboard
         dashboardSection.scrollIntoView({ behavior: 'smooth' });
       } else {
         loginAlert.classList.remove('hidden');
-        // Shake animation
         loginForm.style.animation = 'shake 0.5s ease';
         setTimeout(() => loginForm.style.animation = '', 500);
       }
     });
 
-    // Analysis handler
     analyzeBtn.addEventListener('click', () => {
-      // Get sales values
-      const salesValues = [];
-      for (let i = 0; i < 12; i++) {
-        const val = parseFloat(document.getElementById(`sale_${i}`).value) || 0;
-        salesValues.push(val);
+      try {
+        // Get sales values
+        const salesValues = [];
+        for (let i = 0; i < 12; i++) {
+          const val = parseFloat(document.getElementById(`sale_${i}`).value) || 0;
+          salesValues.push(val);
+        }
+        
+        // Get expenses values
+        const expensesValues = [];
+        for (let i = 0; i < 12; i++) {
+          const val = parseFloat(document.getElementById(`expense_${i}`).value) || 0;
+          expensesValues.push(val);
+        }
+        
+        // Get goals
+        const meta = parseFloat(document.getElementById('currentGoal').value) || 0;
+        const metaFutura = parseFloat(document.getElementById('futureGoal').value) || 0;
+        
+        // Calculations
+        const lucro_liquido = salesValues.reduce((a, b) => a + b, 0);
+        const total_despesas = expensesValues.reduce((a, b) => a + b, 0);
+        const lucro_bruto = lucro_liquido - total_despesas;
+        const quanto_falta_meta = meta - lucro_bruto;
+        const quanto_falta_meta_futura = meta_futura - lucro_bruto;
+        
+        // Update results
+        document.getElementById('totalSales').textContent = formatBRL(lucro_liquido);
+        document.getElementById('totalExpenses').textContent = formatBRL(total_despesas);
+        document.getElementById('grossProfit').textContent = formatBRL(lucro_bruto);
+        
+        // Status message
+        const statusEl = document.getElementById('statusMessage');
+        statusEl.className = 'status-message';
+        
+        if (lucro_bruto >= metaFutura) {
+          statusEl.innerHTML = `<i class="fas fa-trophy"></i> <strong>Lucro de ${formatBRL(lucro_bruto)}</strong><br>Todas as metas alcançadas! 🎉`;
+          statusEl.classList.add('status-success');
+        } else if (lucro_bruto >= meta) {
+          statusEl.innerHTML = `<i class="fas fa-check-circle"></i> <strong>Lucro de ${formatBRL(lucro_bruto)}</strong><br>Meta alcançada! Falta ${formatBRL(quanto_falta_meta_futura)} para alcançar a próxima meta!`;
+          statusEl.classList.add('status-success');
+        } else if (lucro_bruto > 0) {
+          statusEl.innerHTML = `<i class="fas fa-exclamation-circle"></i> <strong>Lucro de ${formatBRL(lucro_bruto)}</strong><br>Meta não alcançada. Falta ${formatBRL(quanto_falta_meta)} para alcançar a meta atual!`;
+          statusEl.classList.add('status-warning');
+        } else if (lucro_bruto === 0) {
+          statusEl.innerHTML = `<i class="fas fa-minus-circle"></i> <strong>Lucro nulo</strong><br>Meta não alcançada. Falta ${formatBRL(quanto_falta_meta)} para alcançar a meta atual!`;
+          statusEl.classList.add('status-warning');
+        } else {
+          statusEl.innerHTML = `<i class="fas fa-times-circle"></i> <strong>Prejuízo de ${formatBRL(Math.abs(lucro_bruto))}</strong><br>Falta ${formatBRL(quanto_falta_meta)} para alcançar a meta atual!`;
+          statusEl.classList.add('status-danger');
+        }
+        
+        // Show results and create chart
+        resultsCard.classList.remove('hidden');
+        resultsCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // Create/Update Chart
+        createChart(lucro_liquido, total_despesas, lucro_bruto, meta, metaFutura);
+        
+      } catch (error) {
+        console.error('Erro na análise:', error);
+        alert('Ocorreu um erro ao analisar os dados. Verifique o console para mais detalhes.');
       }
-      
-      // Get expenses values
-      const expensesValues = [];
-      for (let i = 0; i < 12; i++) {
-        const val = parseFloat(document.getElementById(`expense_${i}`).value) || 0;
-        expensesValues.push(val);
-      }
-      
-      // Get goals
-      const meta = parseFloat(document.getElementById('currentGoal').value) || 0;
-      const metaFutura = parseFloat(document.getElementById('futureGoal').value) || 0;
-      
-      // Calculations (same logic as Python code)
-      const lucro_liquido = salesValues.reduce((a, b) => a + b, 0);
-      const total_despesas = expensesValues.reduce((a, b) => a + b, 0);
-      const lucro_bruto = lucro_liquido - total_despesas;
-      const quanto_falta_meta = meta - lucro_bruto;
-      const quanto_falta_meta_futura = meta_futura - lucro_bruto;
-      
-      // Update results
-      document.getElementById('totalSales').textContent = formatBRL(lucro_liquido);
-      document.getElementById('totalExpenses').textContent = formatBRL(total_despesas);
-      document.getElementById('grossProfit').textContent = formatBRL(lucro_bruto);
-      
-      // Status message
-      const statusEl = document.getElementById('statusMessage');
-      statusEl.className = 'status-message';
-      
-      if (lucro_bruto >= metaFutura) {
-        statusEl.innerHTML = `<i class="fas fa-trophy"></i> <strong>Lucro de ${formatBRL(lucro_bruto)}</strong><br>Todas as metas alcançadas! 🎉`;
-        statusEl.classList.add('status-success');
-      } else if (lucro_bruto >= meta) {
-        statusEl.innerHTML = `<i class="fas fa-check-circle"></i> <strong>Lucro de ${formatBRL(lucro_bruto)}</strong><br>Meta alcançada! Falta ${formatBRL(quanto_falta_meta_futura)} para alcançar a próxima meta!`;
-        statusEl.classList.add('status-success');
-      } else if (lucro_bruto > 0) {
-        statusEl.innerHTML = `<i class="fas fa-exclamation-circle"></i> <strong>Lucro de ${formatBRL(lucro_bruto)}</strong><br>Meta não alcançada. Falta ${formatBRL(quanto_falta_meta)} para alcançar a meta atual!`;
-        statusEl.classList.add('status-warning');
-      } else if (lucro_bruto === 0) {
-        statusEl.innerHTML = `<i class="fas fa-minus-circle"></i> <strong>Lucro nulo</strong><br>Meta não alcançada. Falta ${formatBRL(quanto_falta_meta)} para alcançar a meta atual!`;
-        statusEl.classList.add('status-warning');
-      } else {
-        statusEl.innerHTML = `<i class="fas fa-times-circle"></i> <strong>Prejuízo de ${formatBRL(Math.abs(lucro_bruto))}</strong><br>Falta ${formatBRL(quanto_falta_meta)} para alcançar a meta atual!`;
-        statusEl.classList.add('status-danger');
-      }
-      
-      // Show results and create chart
-      resultsCard.classList.remove('hidden');
-      resultsCard.scrollIntoView({ behavior: 'smooth' });
-      
-      // Create/Update Chart
-      createChart(lucro_liquido, total_despesas, lucro_bruto, meta, metaFutura);
     });
 
-    // Create Chart.js visualization
     function createChart(vendas, despesas, lucro, meta, metaFutura) {
       const ctx = document.getElementById('financeChart').getContext('2d');
       
-      // Destroy previous chart if exists
       if (financeChart) {
         financeChart.destroy();
       }
       
-      // Color logic based on profit
       const profitColor = lucro >= 0 ? '#06d6a0' : '#ef476f';
       
       financeChart = new Chart(ctx, {
         type: 'bar',
-        data: {
+        data: {  // ✅ CORREÇÃO: Adicionado 'data:'
           labels: ['Vendas Totais', 'Despesas Totais', 'Lucro Bruto'],
-          datasets: [{
-            label: 'Valor (R$)',
-            data: [vendas, despesas, lucro],
-            backgroundColor: [
-              'rgba(102, 187, 106, 0.85)',  // Green for sales
-              'rgba(239, 71, 111, 0.85)',    // Red for expenses
-              profitColor + 'cc'              // Dynamic for profit
-            ],
-            borderColor: [
-              'rgba(102, 187, 106, 1)',
-              'rgba(239, 71, 111, 1)',
-              profitColor
-            ],
-            borderWidth: 2,
-            borderRadius: 8,
-            borderSkipped: false
-          },
-          {
-            type: 'line',
-            label: 'Meta Atual',
-            data: [meta, meta, meta],
-            borderColor: '#ffd166',
-            borderDash: [5, 5],
-            borderWidth: 2,
-            pointRadius: 0,
-            fill: false
-          },
-          {
-            type: 'line',
-            label: 'Próxima Meta',
-            data: [metaFutura, metaFutura, metaFutura],
-            borderColor: '#9d4edd',
-            borderDash: [2, 4],
-            borderWidth: 2,
-            pointRadius: 0,
-            fill: false
-          }]
+          datasets: [
+            {
+              label: 'Valor (R$)',
+              data: [vendas, despesas, lucro],  // ✅ CORREÇÃO: Adicionado 'data:'
+              backgroundColor: [
+                'rgba(102, 187, 106, 0.85)',
+                'rgba(239, 71, 111, 0.85)',
+                profitColor + 'cc'
+              ],
+              borderColor: [
+                'rgba(102, 187, 106, 1)',
+                'rgba(239, 71, 111, 1)',
+                profitColor
+              ],
+              borderWidth: 2,
+              borderRadius: 8,
+              borderSkipped: false
+            },
+            {
+              type: 'line',
+              label: 'Meta Atual',
+              data: [meta, meta, meta],  // ✅ CORREÇÃO: Adicionado 'data:'
+              borderColor: '#ffd166',
+              borderDash: [5, 5],
+              borderWidth: 2,
+              pointRadius: 0,
+              fill: false
+            },
+            {
+              type: 'line',
+              label: 'Próxima Meta',
+              data: [metaFutura, metaFutura, metaFutura],  // ✅ CORREÇÃO: Adicionado 'data:'
+              borderColor: '#9d4edd',
+              borderDash: [2, 4],
+              borderWidth: 2,
+              pointRadius: 0,
+              fill: false
+            }
+          ]
         },
         options: {
           responsive: true,
@@ -788,9 +700,7 @@
           scales: {
             y: {
               beginAtZero: true,
-              grid: {
-                color: 'rgba(0, 0, 0, 0.05)'
-              },
+              grid: { color: 'rgba(0, 0, 0, 0.05)' },
               ticks: {
                 callback: function(value) {
                   return 'R$ ' + value.toLocaleString('pt-BR');
@@ -804,12 +714,8 @@
               }
             },
             x: {
-              grid: {
-                display: false
-              },
-              ticks: {
-                font: { size: 11, weight: '500' }
-              }
+              grid: { display: false },
+              ticks: { font: { size: 11, weight: '500' } }
             }
           },
           animation: {
@@ -820,7 +726,6 @@
       });
     }
 
-    // Initialize: Add animation delay to cards
     document.addEventListener('DOMContentLoaded', () => {
       const cards = document.querySelectorAll('.card');
       cards.forEach((card, index) => {
@@ -828,7 +733,6 @@
       });
     });
 
-    // Allow Enter key to submit login
     document.getElementById('password').addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
         loginForm.requestSubmit();

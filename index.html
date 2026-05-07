@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SAFE - Sistema de Análise Financeira Empresarial</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -281,6 +282,9 @@
         <div class="chart-container">
           <canvas id="financeChart"></canvas>
         </div>
+        <button id="downloadPdfBtn" class="btn" style="margin-top: 12px;">
+          <i class="fas fa-file-pdf"></i> Baixar gráfico em PDF
+        </button>
       </div>
     </div>
 
@@ -307,6 +311,7 @@
     const loginForm = document.getElementById('loginForm');
     const loginAlert = document.getElementById('loginAlert');
     const analyzeBtn = document.getElementById('analyzeBtn');
+    const downloadPdfBtn = document.getElementById('downloadPdfBtn');
     const resultsCard = document.getElementById('resultsCard');
     let chartInstance = null;
 
@@ -392,6 +397,33 @@
       
       // Renderizar gráfico
       renderChart(vendasTotal, despesasTotal, lucroBruto, meta, metaFutura);
+    });
+
+    downloadPdfBtn.addEventListener('click', () => {
+      if (!chartInstance) {
+        alert('Gere uma análise antes de baixar o PDF do gráfico.');
+        return;
+      }
+
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+      const canvas = document.getElementById('financeChart');
+      const chartImage = canvas.toDataURL('image/png', 1.0);
+
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      const margin = 10;
+      const title = 'SAFE - Resumo Financeiro Anual';
+
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(14);
+      pdf.text(title, margin, 12);
+
+      const imgWidth = pageWidth - margin * 2;
+      const imgHeight = pageHeight - 28;
+      pdf.addImage(chartImage, 'PNG', margin, 18, imgWidth, imgHeight);
+
+      pdf.save('grafico-financeiro-safe.pdf');
     });
 
     // === CHART.JS ===

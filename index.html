@@ -273,7 +273,7 @@
             <div class="result-value" id="totalExpenses">R$ 0,00</div>
           </div>
           <div class="result-card">
-            <div class="result-label">Lucro Bruto</div>
+            <div class="result-label">Lucro Líquido</div>
             <div class="result-value" id="grossProfit">R$ 0,00</div>
           </div>
         </div>
@@ -437,7 +437,7 @@
       chartInstance = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ['Vendas Totais', 'Despesas Totais', 'Lucro Bruto'],
+          labels: ['Vendas Totais', 'Despesas Totais', 'Lucro Líquido'],
           datasets: [
             {
               label: 'Valor (R$)',
